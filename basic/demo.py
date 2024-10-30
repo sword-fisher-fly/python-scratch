@@ -219,3 +219,14 @@ if __name__ == '__main__':
     ch = Chain().user.timeline.list
     print("chain: ", ch)
     
+    from urllib import request
+
+    with request.urlopen('https://www.ifeng.com') as f:
+        data = f.read()
+        print('Status:', f.status, f.reason)
+        print("======  Header  ====")
+
+        for k, v in f.getheaders():
+            print('%s: %s' % (k, v))
+    # print('Data:', data.decode('utf-8'))
+    

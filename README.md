@@ -9,7 +9,33 @@ pip3 install virtualenv
 python3 -m venv myenv
 source myenv/bin/activate
 deactivate
+```
 
+## Pytest
+
+### 安装
+
+```bash
+pip3 install pytest
+```
+
+### 用法
+***全量测试***
+
+```bash
+pytest
+```
+
+***单个文件测试***
+
+```bash
+pytest test_longest_consecutive.py
+```
+
+***单个函数测试***
+
+```bash
+pytest test_longest_consecutive.py::test_longest_consecutive
 ```
 
 ## 基本数据类型

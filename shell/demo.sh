@@ -22,7 +22,7 @@ for i in {1..254}; do
     ip="${subnet}$i"
     # ping -c 1 -W 1 $ip >/dev/null 2>&1
     # if [ $? -eq 0 ]; then
-        echo $ip
+    echo $ip
     # fi
 done
 
@@ -48,7 +48,6 @@ len=${#str}
 echo "str len: ${len}"
 
 ## 拼接字符串
-
 str1="Hello"
 str2="World"
 concatenated_str="${str1} ${str2}"
@@ -57,9 +56,10 @@ echo "concatenated str: ${concatenated_str}"
 ## 从左删除
 str="HHHHHello, World!"
 prefix="H"
-trimmed_short_str=${str#H*H}
+trimmed_short_str=${str#*H}
+echo "origin str: ${str}"
 echo "left trimmed short str: ${trimmed_short_str}"
-trimmed_long_str=${str##H*H}
+trimmed_long_str=${str##*H}
 echo "left trimmed long str: ${trimmed_long_str}"
 
 ## 从右删除
