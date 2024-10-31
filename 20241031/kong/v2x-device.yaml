@@ -1,0 +1,37 @@
+---
+# Source: v2x-device/templates/all.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: v2x-device
+  namespace: matrix
+  labels:
+    app.kubernetes.io/name: v2x-device
+    helm.sh/chart: v2x-device-20230522163656_dev
+    app.kubernetes.io/instance: v2x-device
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    kubernetes.io/ingress.class: "kong-openapi"
+    configuration.konghq.com: https-strict-true
+    plugins.konghq.com: api-log,api-block,strip-prefix,forward-auth
+spec: 
+  rules:
+    - http:
+        paths:
+          - path: /matrix/v2x-device
+            pathType: Prefix
+            backend:
+              service:
+                name: v2x-device
+                port:
+                  number: 8080
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: strip-prefix
+  namespace: matrix
+config:
+  path_prefix: "/matrix/v2x-device/"
+  forwarded_header: true
+plugin: path-prefix
